@@ -24,3 +24,23 @@ header .project-name {
 .project-name {
   color: #fff;
 }
+
+.container {
+  margin-top: 5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.checkbox-container {
+  display: flex;
+  justify-content: space-between;
+  width: 15rem;
+  margin-top: 1rem;
+  border-bottom: 1px solid #000;
+  padding: 1rem;
+}
+
+.checkbox-container p {
+  font-size: 1.2rem;
+}
