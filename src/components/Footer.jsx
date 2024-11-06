@@ -1,3 +1,5 @@
+import Logos from "./Logos"
+
 function Footer() {
   return (
     <footer>
@@ -7,9 +9,9 @@ function Footer() {
       </div>
 
       <div className="logo-container">
-        <a href="https://github.com/ar4scode"><i class="fa-brands fa-github"></i></a>
-        <a href="https://www.linkedin.com/in/ar4scode"><i class="fa-brands fa-linkedin"></i></a>
-        <a href="https://www.instagram.com/_arasazizi/"><i class="fa-brands fa-instagram"></i></a>
+        <Logos socialLink="https://github.com/ar4scode" appLogo={<i className="fa-brands fa-github"></i>}/>
+        <Logos socialLink="https://www.linkedin.com/in/ar4scode" appLogo={<i class="fa-brands fa-linkedin"></i>}/>
+        <Logos socialLink="https://www.instagram.com/_arasazizi/" appLogo={<i class="fa-brands fa-instagram"></i>}/>
       </div>
     </footer>
   )
