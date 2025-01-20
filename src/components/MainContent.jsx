@@ -1,41 +1,24 @@
-import React from "react"
-import TodoItem from "./Todoitem"
-import { todoData } from "../data/todoData"
-import { Component } from "react"
+import React, { useState } from "react";
+import TodoItem from "./Todoitem";
+import { todoData } from "../data/todoData";
 
-class MainContent extends Component {
-  constructor() {
-    super()
-    this.state = {
-      todos : todoData
-    }
-    this.handleChange = this.handleChange.bind(this)
-  }
+const MainContent = () => {
+  const [todos, setTodos] = useState(todoData);
+  const [isCompleted, setIsCompleted] = useState(false)
 
-  handleChange(id) {
-    this.setState(prevState => {
-      const updatedTodos = prevState.todos.map(todo => {
-        if(todo.id === id) {
-          todo.completed = !todo.completed
-        }
-        return todo
-      })
-      return {
-        todos: updatedTodos
-      }
-    })
-  }
+  const handleChange = (id) => {
+    setTodos((prevTodos) =>
+      prevTodos.map((todo) =>
+        todo.id === id ? { ...todo, completed: !todo.completed } : todo
+      )
+    );
+  };
 
-  render() {
-    const todoList = this.state.todos.map((item) => <TodoItem key={item.id} data={item} handleChange={this.handleChange} />)
-    
-    return (
-      <div className="container">
-        {todoList}
-      </div>
-    )
+  const todoList = todos.map((item) => (
+    <TodoItem key={item.id} data={item} handleChange={handleChange} />
+  ));
 
-  }
-}
+  return <div className="container">{todoList}</div>;
+};
 
-export default MainContent
+export default MainContent;
