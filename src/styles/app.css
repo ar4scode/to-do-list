@@ -1,3 +1,7 @@
+body {
+  margin-top: 5rem;
+}
+
 header {
   position: absolute;
   inset: 0 0 auto 0;
@@ -26,10 +30,10 @@ header .project-name {
 }
 
 .container {
-  margin-top: 5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 2rem;
 }
 
 .checkbox-container {
@@ -86,4 +90,45 @@ footer p span {
 
 .logo-container a:hover {
   color: #d41010;
+}
+
+form {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+form input,
+form button {
+  padding: 0.5rem 1.5rem;
+  border-radius: .5rem;
+  border: none;
+}
+
+form button {
+  background-color: #000;
+  color: #fff;
+  cursor: pointer;
+  font-size: .9rem;
+  transition: all .4s;
+  box-shadow: 0 0 20px 1px rgba(0, 0, 0, .2);
+}
+
+form button:hover {
+  transform: translateY(2px);
+}
+
+form input {
+  background-color: #fff;
+  border: .5px solid #666;
+}
+
+form input:focus {
+  outline: none;
+}
+
+.input-error {
+  text-align: center;
+  margin-top: .5rem;
+  color: #e95f5f;
 }
