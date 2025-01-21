@@ -1,51 +1,81 @@
 import React, { useState } from "react";
-import TodoItem from "./Todoitem";
-import { todoData } from "../data/todoData";
-import {useFormik} from "formik"
-import * as Yup from "yup"
+import { useFormik } from "formik";
+import * as Yup from "yup";
 
 const MainContent = () => {
-  const [todos, setTodos] = useState(todoData);
-  const [isCompleted, setIsCompleted] = useState(false)
+  const [tasks, setTasks] = useState([]);
 
   const formik = useFormik({
     initialValues: {
-      todoTask: ""
+      todoTask: "",
     },
     validationSchema: Yup.object({
-      todoTask: Yup.string()
-        .required("Enter New Task")
-    })
-  })
+      todoTask: Yup.string().required("Enter New Task"),
+    }),
+    onSubmit: (values, { resetForm }) => {
+      const newTask = {
+        id: Date.now(), // Unique ID for each task
+        name: values.todoTask,
+        completed: false,
+      };
+      setTasks([...tasks, newTask]); // Add the new task
+      resetForm(); // Clear the input field
+    },
+  });
 
-  const handleChange = (id) => {
-    setTodos((prevTodos) =>
-      prevTodos.map((todo) =>
-        todo.id === id ? { ...todo, completed: !todo.completed } : todo
+  const toggleCompletion = (id) => {
+    setTasks((prevTasks) =>
+      prevTasks.map((task) =>
+        task.id === id ? { ...task, completed: !task.completed } : task
       )
     );
   };
 
-  const todoList = todos.map((item) => (
-    <TodoItem key={item.id} data={item} handleChange={handleChange} />
-  ));
+  const removeTask = (id) => {
+    setTasks((prevTasks) => prevTasks.filter((task) => task.id !== id));
+  };
+
+  const completedStyle = {
+    fontSize: "1.2rem",
+    textDecoration: "line-through",
+    color: "#8b8787",
+    fontStyle: "italic",
+  };
 
   return (
     <>
       <form onSubmit={formik.handleSubmit}>
         <input
+          id="todoTask"
+          name="todoTask"
           type="text"
           value={formik.values.todoTask}
+          onChange={formik.handleChange}
           placeholder="New Task"
         />
         <button type="submit">Add</button>
       </form>
-      {formik.errors.todoTask ? (
-          <div className="input-error">{formik.errors.todoTask}</div>
-        ) : null}
-      <div className="container">{todoList}</div>
+      {formik.errors.todoTask && (
+        <div className="input-error">{formik.errors.todoTask}</div>
+      )}
+
+      <div className="container">
+        {tasks.map((task) => (
+          <div className="to-do-list" key={task.id}>
+            <p style={task.completed ? completedStyle : null}>{task.name}</p>
+            <div>
+              <input
+                type="checkbox"
+                checked={task.completed}
+                onChange={() => toggleCompletion(task.id)}
+              />
+              <button onClick={() => removeTask(task.id)}>Remove</button>
+            </div>
+          </div>
+        ))}
+      </div>
     </>
-  ) 
+  );
 };
 
 export default MainContent;
