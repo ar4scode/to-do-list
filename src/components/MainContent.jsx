@@ -36,7 +36,7 @@ const MainContent = () => {
   };
 
   const completedStyle = {
-    fontSize: "1.2rem",
+    fontSize: "1rem",
     textDecoration: "line-through",
     color: "#8b8787",
     fontStyle: "italic",

@@ -137,8 +137,8 @@ form input:focus {
 }
 
 .to-do-list button {
-  background-color: #fff;
-  border: 1px solid #000;
+  color: #fff;
+  background-color: #070707;
   padding: 0.3rem;
   border-radius: .4rem;
   font-weight: bold;
@@ -148,6 +148,35 @@ form input:focus {
 
 .to-do-list button:hover {
   transform: scale(1.1);
-  color: #fff;
-  background-color: #000;
+  color: #d41010;
+}
+
+@media (max-width: 480px) {
+  header {
+    padding: 0.6rem;
+  }
+
+  header .name,
+  header .project-name {
+    font-size: 1.2rem;
+  }
+
+  .container {
+    margin-top: 2rem;
+    padding: 2rem;
+  }
+
+  .to-do-list {
+    min-width: 18rem;
+    font-size: 1rem;
+    padding: 0.4rem;
+  }
+
+  footer {
+    font-size: .9rem;
+  }
+
+  .logo-container a {
+    font-size: 1.5rem;
+  }
 }
