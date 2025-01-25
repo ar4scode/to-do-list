@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { useEffect } from "react";
 
 const MainContent = () => {
   const [tasks, setTasks] = useState([]);
@@ -41,6 +42,10 @@ const MainContent = () => {
     color: "#8b8787",
     fontStyle: "italic",
   };
+
+  // useEffect(() => {
+  //   localStorage.setItem("tasks", JSON.stringify(tasks))
+  // })
 
   return (
     <>
