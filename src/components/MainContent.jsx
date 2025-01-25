@@ -4,7 +4,8 @@ import * as Yup from "yup";
 import { useEffect } from "react";
 
 const MainContent = () => {
-  const [tasks, setTasks] = useState([]);
+  const retrievedTasks = JSON.parse(localStorage.getItem("tasks"))
+  const [tasks, setTasks] = useState(retrievedTasks);
 
   const formik = useFormik({
     initialValues: {
@@ -43,9 +44,9 @@ const MainContent = () => {
     fontStyle: "italic",
   };
 
-  // useEffect(() => {
-  //   localStorage.setItem("tasks", JSON.stringify(tasks))
-  // })
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks))
+  }, [tasks])
 
   return (
     <>
